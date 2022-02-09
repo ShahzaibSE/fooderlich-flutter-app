@@ -20,7 +20,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final theme = FooderlichTheme.dark();
+  int _selectedIndex = 0;
+  static List<Widget> pages = [
+    Container(
+      color: Colors.red,
+    ),
+    Container(
+      color: Colors.green,
+    ),
+    Container(
+      color: Colors.blue,
+    ),
+  ];
+  //
+  void _itemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  //
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -33,21 +52,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(
           'Fooderlich',
-          style: theme.textTheme.headline6,
+          style: Theme.of(context).textTheme.headline6,
         ),
       ),
-      body: Center(
-        child: Text(
-          'Let\'s get cooking 👩‍🍳',
-          // 5
-          style: theme.textTheme.headline1,
-        ),
-      ),
+      body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        // 5
-        selectedItemColor: theme.textSelectionTheme.selectionColor,
-        // TODO: Set selected tab bar
-        // 6
+        selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         items: <BottomNavigationBarItem>[
           const BottomNavigationBarItem(
             icon: Icon(Icons.card_giftcard),
@@ -62,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Card3',
           ),
         ],
+        onTap: _itemTapped,
       ),
     );
   }
