@@ -57,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         items: <BottomNavigationBarItem>[
           const BottomNavigationBarItem(
